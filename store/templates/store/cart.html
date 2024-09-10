@@ -1,0 +1,58 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+<div class="container mx-auto px-4 py-6">
+    <!-- Continue Shopping Button -->
+   
+
+		<a class="bg-blue-800 text-white py-2 px-4 rounded hover:bg-red-700" href="{% url 'store' %}">
+        &#x2190; Continue Shopping
+    </a>
+
+
+    <div class="mt-6 bg-white shadow-md rounded-lg p-6">
+        <div class="flex justify-between mb-4">
+            <h5 class="text-lg font-bold">Items: <strong>{{ order.get_cart_items }}</strong></h5>
+            <h5 class="text-lg font-bold">Total: <strong>${{ order.get_cart_total }}</strong></h5>
+			  <a class="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700" href="{% url 'checkout' %}">Checkout</a> 
+        </div>
+
+        <!-- Cart Items Table -->
+        <div class="bg-gray-100 p-4 rounded-lg">
+            <div class="flex mb-4 font-semibold">
+                <div class="flex-2"></div>
+                <div class="flex-2">Item</div>
+                <div class="flex-1">Price</div>
+                <div class="flex-1">Quantity</div>
+                <div class="flex-1">Total</div>
+            </div>
+
+            {% for item in items %}
+            <div class="flex items-center border-b border-gray-300 py-4">
+                <div class="flex-2">
+                    <img class="w-20 h-20 object-cover rounded" src="{{ item.product.image.url }}" alt="{{ item.product.name }}">
+                </div>
+                <div class="flex-2">
+                    <p class="text-lg">{{ item.product.name }}</p>
+                </div>
+                <div class="flex-1">
+                    <p class="text-lg">$ {{ item.product.price|floatformat:2 }}</p>
+                </div>
+                <div class="flex-1">
+                    <div class="flex items-center space-x-2">
+                        <p class="text-lg">{{ item.quantity }}</p>
+                        <div class="flex space-x-1">
+                            <img class="w-6 h-6 cursor-pointer" src="{% static 'images/arrow-up.png' %}" alt="Increase Quantity">
+                            <img class="w-6 h-6 cursor-pointer" src="{% static 'images/arrow-down.png' %}" alt="Decrease Quantity">
+                        </div>
+                    </div>
+                </div>
+                <div class="flex-1">
+                    <p class="text-lg">$ {{ item.get_total }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock content %}
