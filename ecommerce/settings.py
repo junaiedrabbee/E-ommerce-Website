@@ -130,3 +130,10 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/images/'  # Note the leading and trailing slashes
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',  # Default
+]
+

@@ -5,7 +5,7 @@
   {% load static %}
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block title %}My E-commerce Site{% endblock %}</title>
+  <title>{% block title %}La Masia{% endblock %}</title>
   <!-- Tailwind CSS -->
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
   <!-- Custom CSS -->
@@ -38,8 +38,8 @@
           <li><a href="{% url 'store' %}" class="text-black no-underline hover:text-white hover:bg-gray-700 px-3 py-2 rounded">Store</a></li>
           <li><a href="{% url 'cart' %}" class="text-black no-underline hover:text-white hover:bg-gray-700 px-3 py-2 rounded">Cart</a></li>
           <li><a href="{% url 'blogs' %}" class="text-black no-underline hover:text-white hover:bg-gray-700 px-3 py-2 rounded">Blogs</a></li>
-          <li><a href="#" class="text-black no-underline hover:text-white hover:bg-gray-700 px-3 py-2 rounded">Profile</a></li>
-          <li><a href="#" class="text-black no-underline hover:text-white hover:bg-gray-700 px-3 py-2 rounded">Contact Us</a></li>
+          <li><a href="{% url 'profile' %}" class="text-black no-underline hover:text-white hover:bg-gray-700 px-3 py-2 rounded">Profile</a></li>
+          <li><a href="{% url 'contact_us'%}" class="text-black no-underline hover:text-white hover:bg-gray-700 px-3 py-2 rounded">Contact Us</a></li>
         </ul>
       </div>
 
@@ -52,10 +52,13 @@
           </svg>
         </button>
       </div>
-
-      <!-- Login Button -->
-      <button  class="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700"  <a  href="">Login</a> </button>
-
+{% comment %} loging {% endcomment %}
+{% if user.is_authenticated %}
+<a href="{% url 'logout' %}">Logout</a>
+{% else %}
+<a href="{% url 'login' %}">Login</a>
+<a href="{% url 'register' %}">Register</a>
+{% endif %}
       <!-- Hamburger Menu (for mobile) -->
       <div class="md:hidden">
         <button id="menu-toggle" class="text-black focus:outline-none">
@@ -87,7 +90,7 @@
   <!-- Footer -->
   <footer class="bg-gray-800 via-red-500 to-red-900 py-4 mt-4 shadow-inner">
     <div class="container mx-auto text-center">
-      <p class="text-white">&copy; 2024 My E-commerce Site. All rights reserved.</p>
+      <p class="text-white">&copy; 2024 Junaied Kaream Rabbee. All rights reserved.</p>
       <p class="mt-2">
         <a href="}" class="text-white-600 hover:text-indigo-900">About Us</a> |
         <a href="{}" class="text-white-600 hover:text-indigo-900">Privacy Policy</a> |

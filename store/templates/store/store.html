@@ -21,13 +21,12 @@
 					View Details
 				</button>
 				<!-- Add to Cart Button -->
-				<button
-					class="bg-green-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300 ease-in-out">
-					<a href="">
-					
-					</a>
-					Add to cart
-				</button>
+				<a href="{% url 'add_to_cart' product.id %}?next={{ request.path }}" class="btn btn-primary">
+					Add to Cart
+				</a>
+				
+
+				
 			</div>
 		</div>
 	</div>

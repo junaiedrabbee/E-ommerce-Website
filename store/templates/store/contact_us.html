@@ -1,0 +1,37 @@
+{% extends 'store/main.html' %}
+{% load static %}
+
+{% block title %}Contact Us - La Masia{% endblock %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto p-6 bg-white shadow-md rounded-lg">
+    <h1 class="text-3xl font-semibold mb-6 text-center">Contact Us</h1>
+    <form action="{% url 'contact_us' %}" method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        <div class="mb-4">
+            {{ form.name.label_tag }}
+            {{ form.name }}
+            {{ form.name.errors }}
+        </div>
+        <div class="mb-4">
+            {{ form.email.label_tag }}
+            {{ form.email }}
+            {{ form.email.errors }}
+        </div>
+        <div class="mb-4">
+            {{ form.subject.label_tag }}
+            {{ form.subject }}
+            {{ form.subject.errors }}
+        </div>
+        <div class="mb-4">
+            {{ form.message.label_tag }}
+            {{ form.message }}
+            {{ form.message.errors }}
+        </div>
+        <div class="flex items-center justify-end">
+            <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Send Message</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
